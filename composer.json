@@ -1,0 +1,16 @@
+{
+    "name": "sweetcode/mcapi",
+    "description": "Simple SDK to access the mcapi.de data.",
+    "authors": [
+        {
+            "name": "sweetcode",
+            "email": "jan@krueger-jan.de"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "McAPI\\": "/"
+        }
+    }
+}
