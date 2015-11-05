@@ -2,7 +2,7 @@
 
 namespace McAPI\Endpoint;
 
-class Endpoint {
+abstract class Endpoint {
 
     private $result = array();
 
@@ -18,11 +18,34 @@ class Endpoint {
     }
 
     /**
+    * Executes the request.
+    */
+    abstract public function execute();
+
+    /**
     * Returns the complete data set
     * @return Returns an array with all datas from the API request.
     */
-    public function getResult() {
-        return $this->result;
+    public function getData($path = null) {
+
+        if($path === null) {
+            return $this->result;
+        }
+
+        $parts = explode('.', $path);
+        $value = $this->result;
+
+        foreach($parts as $part) {
+
+            if(!(array_key_exists($part, $value))) {
+                return null; //Entry doesn't exist
+            }
+
+            $value = $value[$part];
+
+        }
+
+        return $value;
     }
 
     /**
@@ -51,6 +74,8 @@ class Endpoint {
     }
 
     public function setData(array $result) {
+
+        $this->result = $result;
 
         $this->cached = array_key_exists('updated', $result);
 

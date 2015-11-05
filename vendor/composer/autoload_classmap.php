@@ -9,4 +9,7 @@ return array(
     'McAPI\\Curl' => $baseDir . '/McAPI/CURL/Curl.class.php',
     'McAPI\\Endpoint\\Endpoint' => $baseDir . '/McAPI/endpoints/Endpoint.class.php',
     'McAPI\\Endpoint\\Server' => $baseDir . '/McAPI/endpoints/Server.class.php',
+    'McAPI\\Server\\ListInformation' => $baseDir . '/McAPI/endpoints/server/ListInformation.class.php',
+    'McAPI\\Server\\Players' => $baseDir . '/McAPI/endpoints/server/Players.class.php',
+    'McAPI\\Server\\Software' => $baseDir . '/McAPI/endpoints/server/Software.class.php',
 );
