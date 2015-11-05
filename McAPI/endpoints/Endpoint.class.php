@@ -2,7 +2,7 @@
 
 namespace McAPI\Endpoint;
 
-protected class Endpoint {
+class Endpoint {
 
     private $result = array();
 
@@ -13,7 +13,7 @@ protected class Endpoint {
 
     public function __construct(array $result) {
 
-        $this->setDat($result);
+        $this->setData($result);
 
     }
 
@@ -55,8 +55,8 @@ protected class Endpoint {
         $this->cached = array_key_exists('updated', $result);
 
         if($this->cached) {
-            $this->created = new \DateTime($result['updated']['time'], \DateTimeZone::EUROPE);
-            $this->expires = new \DateTime($result['updated']['expires'], \DateTimeZone::EUROPE);
+            $this->created = new \DateTime($result['updated']['time'], new \DateTimeZone($result['updated']['zone']));
+            $this->expires = new \DateTime($result['updated']['expires'], new \DateTimeZone($result['updated']['zone']));
         }
 
     }

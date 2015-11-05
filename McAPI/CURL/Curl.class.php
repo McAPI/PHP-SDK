@@ -20,14 +20,16 @@ class Curl {
 
         if(!(empty($arguments))) {
 
+            $max = count($arguments);
             for($i = 0; $i < $max; $i++) {
-                $emdpoint .= "/{$arguments[$i]}";
+                $endpoint .= "/{$arguments[$i]}";
             }
 
         }
 
         return self::request(
-            sprintf(self::$api, $endpoint, 'GET')
+            sprintf(self::$api, $endpoint),
+            'GET'
         );
 
     }
@@ -39,34 +41,35 @@ class Curl {
     * @param array $arguments
     * @return array
     */
-    public static function post($endpoint, $arguments) {
+    public static function post($endpoint, $arguments = array()) {
 
         return self::request(
-            sprintf(self::$api, $endpoint, 'POST', $arguments)
+            sprintf(self::$api, $endpoint),
+            'POST',
+            $arguments
         );
 
     }
 
-    private static function request($method, $url, $requestMethod, $arguments = array()) {
+    private static function request($url, $requestMethod, $arguments = array()) {
 
         $curl = curl_init();
-        $requestMethod = strtoupper($requestMethod),
+        $requestMethod = strtoupper($requestMethod);
 
         curl_setopt_array($curl, array(
             CURLOPT_URL             => $url,
-            CURLOPT_HEADER          => true,
             CURLOPT_RETURNTRANSFER  => true,
-            CURLOPT_USERAGENT       => self::$userAgent;
+            CURLOPT_USERAGENT       => self::$userAgent
         ));
 
         self::setRequestMethod($curl, $requestMethod);
 
         if(!(empty($arguments))) {
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $arguments);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($arguments, '', '&'));
         }
 
         $response = curl_exec($curl);
-        curl_close($curl;)
+        curl_close($curl);
 
         return json_decode($response, true);
 

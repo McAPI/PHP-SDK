@@ -2,6 +2,8 @@
 
 namespace McAPI\Endpoint;
 
+use McAPI\Curl as Curl;
+
 class Server extends Endpoint {
 
     private $address;
@@ -20,9 +22,27 @@ class Server extends Endpoint {
 
     public function fetchSimple() {
 
-        parent::setData(
-            
-        );
+        parent::setData(Curl::get(
+            'server',
+            array(
+                $this->address,
+                $this->port,
+                $this->version
+            )
+        ));
+
+    }
+
+    public function fetchComplex() {
+
+        parent::setData(Curl::post(
+            'server',
+            array(
+                'ip'        => $this->address,
+                'port'      => $this->port,
+                'version'   => $this->version
+            )
+        ));
 
     }
 

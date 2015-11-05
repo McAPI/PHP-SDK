@@ -6,4 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'McAPI\\Curl' => $baseDir . '/McAPI/CURL/Curl.class.php',
+    'McAPI\\Endpoint\\Endpoint' => $baseDir . '/McAPI/endpoints/Endpoint.class.php',
+    'McAPI\\Endpoint\\Server' => $baseDir . '/McAPI/endpoints/Server.class.php',
 );
