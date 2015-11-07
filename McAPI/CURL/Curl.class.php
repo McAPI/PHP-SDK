@@ -16,7 +16,7 @@ class Curl {
     * @param array $arguments
     * @return array
     */
-    public static function get($endpoint, $arguments) {
+    public static function get($endpoint, $arguments = array()) {
 
         if(!(empty($arguments))) {
 
