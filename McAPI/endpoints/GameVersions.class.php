@@ -28,9 +28,33 @@ class GameVersions extends Endpoint {
 
     }
 
+
+    /**
+    * Returns an array with all versions.
+    * @return \McAPI\Game\GameVersion[]
+    */
     public function getVersions() {
 
         return $this->versions;
+
+    }
+
+    /**
+    * Returns a specified version.
+    * @param $value the version id
+    * @return \McAPI\Game\GameVersion
+    */
+    public function getVersion($value) {
+
+        foreach($this->getVersions() as $version) {
+
+            if($version->getVersion() == $value) {
+                return $version;
+            }
+
+        }
+
+        return null;
 
     }
 

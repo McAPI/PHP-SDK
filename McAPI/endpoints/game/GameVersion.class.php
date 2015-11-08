@@ -16,14 +16,26 @@ class GameVersion {
 
     }
 
+    /**
+    * Returns the version id.
+    * @return string
+    */
     public function getVersion() {
         return $this->version;
     }
 
-    public function getRelease() {
-        return $this->release;
+    /**
+    * Returns the date when this build has been released.
+    * @return \DateTime
+    */
+    public function getReleaseTime() {
+        return $this->releaseTime;
     }
 
+    /**
+    * Returns the type of release.
+    * @return string
+    */
     public function getType() {
         return $this->type;
     }
